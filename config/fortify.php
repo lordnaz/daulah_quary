@@ -108,7 +108,7 @@ return [
         // Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
-        Features::twoFactorAuthentication(),
+        // Features::twoFactorAuthentication(),
     ],
 
 ];
