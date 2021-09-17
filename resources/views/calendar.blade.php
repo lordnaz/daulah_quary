@@ -4,6 +4,7 @@
             Calendar
         </h2>
         <div class="h-screen antialiased">
+
             <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
 
 
@@ -52,7 +53,7 @@
 										x-text="events.filter(e => e.event_date === new Date(year, month, date).toDateString()).length"></div> -->
 
                                         <template x-for="event in events.filter(e => new Date(e.event_date).toDateString() ===  new Date(year, month, date).toDateString() )">
-                                            <div class="px-2 py-1 mt-1 overflow-hidden border rounded-lg" :class="{
+                                            <div @click="showEventModal(date)" class="px-2 py-1 mt-1 border rounded-lg cursor-pointer" :class="{
 												'border-blue-200 text-blue-800 bg-blue-100': event.event_theme === 'blue',
 												'border-red-200 text-red-800 bg-red-100': event.event_theme === 'red',
 												'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_theme === 'yellow',
@@ -123,7 +124,7 @@
             </div>
 
             <script>
-                const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                const MONTH_NAMES = ['Januari', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
                 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
                 function app() {
@@ -135,19 +136,19 @@
                         days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 
                         events: [{
-                                event_date: new Date(2020, 3, 1),
+                                event_date: new Date(2021, 3, 1),
                                 event_title: "April Fool's Day",
                                 event_theme: 'blue'
                             },
 
                             {
-                                event_date: new Date(2020, 3, 10),
+                                event_date: new Date(2021, 3, 10),
                                 event_title: "Birthday",
                                 event_theme: 'red'
                             },
 
                             {
-                                event_date: new Date(2020, 3, 16),
+                                event_date: new Date(2021, 3, 16),
                                 event_title: "Upcoming Event",
                                 event_theme: 'green'
                             }
