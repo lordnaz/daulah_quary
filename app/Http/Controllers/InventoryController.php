@@ -12,9 +12,11 @@ class InventoryController extends Controller
     //display data dekat table
     public function insert(){
 
-        $data = Items::orderBy('item_name', 'asc')->get();
-        return view('insert-parts',['items'=>$data]
-        );
+        $data = Items::orderBy('item_name', 'asc')->paginate(8);
+        $total = Items::all();
+        
+        return view('insert-parts')->with('items', $data)->with('totals', $total)
+        ;
     }
 
     //untuk create item baru

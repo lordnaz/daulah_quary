@@ -16,11 +16,14 @@ class ConsumptionInventoryController extends Controller
         $data = Items::orderBy('item_name', 'asc')->get();
         $user_name = auth()->User()->name;
 
-        $showadmin = itemOut::orderBy('created_at','desc')->get();
-        $showuser = itemOut::where('name', $user_name)->get();
+        $showadmin = itemOut::orderBy('created_at','desc')->paginate(4);
+        $totaladmin = itemOut::all();
+        $showuser = itemOut::where('name', $user_name)->paginate(4);
+        $totaluser = itemOut::where('name', $user_name)->get();
 
        
         return view('consumption')->with('users', $username)->with('item', $data)->with('showadmin', $showadmin)->with('showuser', $showuser)
+        ->with('totaladmin', $totaladmin)->with('totaluser', $totaluser)
         ;
     }
 
