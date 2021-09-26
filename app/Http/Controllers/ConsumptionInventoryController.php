@@ -12,13 +12,13 @@ class ConsumptionInventoryController extends Controller
 {
     //
     public function consumptionmain(){
-        $username = User::where('role', 'user' , 'asc')->get();
+        $username = User::where('role', 'user')->orderBy('name','asc')->get();
         $data = Items::orderBy('item_name', 'asc')->get();
         $user_name = auth()->User()->name;
 
         $showadmin = itemOut::orderBy('created_at','desc')->paginate(4);
         $totaladmin = itemOut::all();
-        $showuser = itemOut::where('name', $user_name)->paginate(4);
+        $showuser = itemOut::where('name', $user_name,)->orderBy('created_at','desc')->paginate(4);
         $totaluser = itemOut::where('name', $user_name)->get();
 
        
