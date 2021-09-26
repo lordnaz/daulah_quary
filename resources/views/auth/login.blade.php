@@ -1,10 +1,10 @@
 <x-guest-layout title="Login">
-    <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+    <div class="flex items-center min-h-screen p-3 bg-gray-50 dark:bg-gray-900">
         <div class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
             <div class="flex flex-col overflow-y-auto md:flex-row">
                 <div class="h-32 md:h-auto md:w-1/2">
-                    <img aria-hidden="true" class="object-cover w-full h-full dark:hidden" src="{{ asset('img/daulah_banner3.jpg') }}" alt="Office" />
-                    <img aria-hidden="true" class="hidden object-cover w-full h-full dark:block" src="{{ asset('img/daulah_banner3.jpg')}}" alt="Office" />
+                    <img aria-hidden="true" class="object-cover w-full h-full dark:hidden" src="{{ asset('img/daulah_banner2.jpg') }}" alt="Office" />
+                    <img aria-hidden="true" class="hidden object-cover w-full h-full dark:block" src="{{ asset('img/daulah_banner2.jpg')}}" alt="Office" />
                 </div>
                 <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                     <div class="w-full">
@@ -32,7 +32,7 @@
                             @csrf
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Email</span>
-                                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Jane Doe" name="email" value="{{ old('email') }}" required autofocus />
+                                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="sample@gmail.com" name="email" value="{{ old('email') }}" required autofocus />
                             </label>
                             <label class="block mt-4 text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Password</span>

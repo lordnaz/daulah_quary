@@ -16,13 +16,19 @@
                             <span x-text="year" class="ml-1 text-lg font-normal text-gray-600"></span>
                         </div>
                         <div class="px-1 border rounded-lg" style="padding-top: 2px;">
-                            <button type="button" class="inline-flex items-center p-1 leading-none transition duration-100 ease-in-out rounded-lg cursor-pointer hover:bg-gray-200" :class="{'cursor-not-allowed opacity-25': month == 0 }" :disabled="month == 0 ? true : false" @click="month--; getNoOfDays()">
+                            <button type="button" class="inline-flex items-center p-1 leading-none transition duration-100 ease-in-out rounded-lg cursor-pointer hover:bg-gray-200" 
+                            {{-- :class="{'cursor-not-allowed opacity-25': month == 0 }"  --}}
+                            {{-- :disabled="month == 0 ? true : false"  --}}
+                            @click="month--; getNoOfDays()">
                                 <svg class="inline-flex w-6 h-6 leading-none text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
                             <div class="inline-flex h-6 border-r"></div>
-                            <button type="button" class="inline-flex items-center p-1 leading-none transition duration-100 ease-in-out rounded-lg cursor-pointer hover:bg-gray-200" :class="{'cursor-not-allowed opacity-25': month == 11 }" :disabled="month == 11 ? true : false" @click="month++; getNoOfDays()">
+                            <button type="button" class="inline-flex items-center p-1 leading-none transition duration-100 ease-in-out rounded-lg cursor-pointer hover:bg-gray-200" 
+                            {{-- :class="{'cursor-not-allowed opacity-25': month == 11 }"  --}}
+                            {{-- :disabled="month == 11 ? true : false"  --}}
+                            @click="month++; getNoOfDays()">
                                 <svg class="inline-flex w-6 h-6 leading-none text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                 </svg>
@@ -136,7 +142,7 @@
                         days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 
                         events: [{
-                                event_date: new Date(2021, 3, 1),
+                                event_date: new Date(2020, 3, 1),
                                 event_title: "April Fool's Day",
                                 event_theme: 'blue'
                             },
@@ -148,7 +154,7 @@
                             },
 
                             {
-                                event_date: new Date(2021, 3, 16),
+                                event_date: new Date(2023, 3, 16),
                                 event_title: "Upcoming Event",
                                 event_theme: 'green'
                             }
@@ -224,6 +230,20 @@
                         },
 
                         getNoOfDays() {
+
+                            // alert(this.month)
+
+                            if(this.month < 0){
+                                this.year = this.year - 1
+                                this.month = 11
+                            }
+
+                            if(this.month > 11){
+                                this.year = this.year + 1
+                                this.month = 0
+                            }
+
+
                             let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
 
                             // find where to start calendar day of week

@@ -43,14 +43,22 @@
             @include('layouts.navigation-dropdown')
             <main class="h-full overflow-y-auto">
                 {{ $slot }}
+                
             </main>
+
+            {{-- <footer class="relative inset-x-0 bottom-0 h-16">
+                Copyright &copy; 2021 Serba Dinamik Group All rights reserved  Powered By <a class="text-success" href="https://nfylegacy.biz.my/" target="_blank">NFY Legacy</a>
+            </footer> --}}
+            
         </div>
 
 
         @stack('modals')
 
         @livewireScripts
+        
     </div>
+
 </body>
 
 </html>
