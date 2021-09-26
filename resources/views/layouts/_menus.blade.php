@@ -24,7 +24,7 @@
                     d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
                   ></path>
                 </svg>
-                <span class="ml-4">Pages</span>
+                <span class="ml-4">Inventory</span>
               </span>
               <svg
                 class="w-4 h-4"
@@ -53,20 +53,20 @@
                 <li
                   class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 >
-                  <a class="w-full" href="{{route('dashboard')}}">Login</a>
+                  <a class="w-full" href="insert-parts">Insert Parts</a>
                 </li>
                 <li
                   class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 >
-                  <a class="w-full" href="pages/create-account.html">
-                    Create account
+                  <a class="w-full" href="UpQuantity">
+                    Update Parts Item
                   </a>
                 </li>
                 <li
                   class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 >
-                  <a class="w-full" href="pages/forgot-password.html">
-                    Forgot password
+                  <a class="w-full" href="consumption">
+                    Consumption
                   </a>
                 </li>
                 <li

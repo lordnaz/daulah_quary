@@ -14,8 +14,12 @@ class CreateItemsTable extends Migration
     public function up()
     {
         Schema::create('items', function (Blueprint $table) {
-            $table->id();
+            $table->id('table_id');
+            $table->string('item_name')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->string('created_by')->nullable();
             $table->timestamps();
+
         });
     }
 

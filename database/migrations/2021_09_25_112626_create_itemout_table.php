@@ -16,9 +16,12 @@ class CreateItemoutTable extends Migration
         Schema::create('itemout', function (Blueprint $table) {
             $table->id('itemout_id');
             $table->integer('quantityout')->nullable();
-            $table->foreignId('table_id');
-            $table->foreignId('user_id');
+            $table->string('item')->nullable();
+            $table->string('name')->nullable();
+            $table->foreignId('table_id')->index();
+            $table->foreignId('user_id')->index();
             $table->timestamps();
+            
         });
     }
 
