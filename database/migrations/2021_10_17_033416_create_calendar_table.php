@@ -13,10 +13,12 @@ class CreateCalendarTable extends Migration
      */
     public function up()
     {
-        Schema::create('calendar', function (Blueprint $table) {
+        Schema::create('report', function (Blueprint $table) {
             $table->id();
-            $table->string('title_event');
-            $table->string('theme');
+            $table->string('title');
+            $table->text('description');
+            $table->string('doc_path');
+            $table->string('created_by');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateCalendarTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calendar');
+        Schema::dropIfExists('report');
     }
 }

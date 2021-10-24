@@ -87,20 +87,26 @@
 
                         <div class="block w-full p-8 overflow-hidden bg-white rounded-lg shadow">
 
-                            <h2 class="pb-2 mb-6 text-2xl font-bold text-gray-800 border-b">Add Event Details</h2>
+                            <h2 class="pb-2 mb-6 text-2xl font-bold text-gray-800 border-b">Add Maintenance Details</h2>
                             <form method="POST" action="/addcalendar">
                  {{@csrf_field()}}
-                            <div class="mb-4">
-                                <label class="block mb-1 text-sm font-bold tracking-wide text-gray-800">Event title</label>
-                                <input class="w-full px-4 py-2 leading-tight text-gray-700 bg-gray-200 border-2 border-gray-200 rounded-lg appearance-none dark:text-gray-300 focus:outline-none focus:bg-white focus:border-blue-500" name="title" type="text" x-model="event_title">
-                            </div>
-
+                            
                             <div class="mb-4">
                                 <label class="block mb-1 text-sm font-bold tracking-wide text-gray-800">Event date</label>
                                 <input class="w-full px-4 py-2 leading-tight text-gray-700 bg-gray-200 border-2 border-gray-200 rounded-lg appearance-none dark:text-gray-300 focus:outline-none focus:bg-white focus:border-blue-500" name="date" type="text" x-model="event_date" readonly>
                             </div>
 
-                            <div class="inline-block w-64 mb-4">
+                            <div class="mb-4">
+                                <label class="block mb-1 text-sm font-bold tracking-wide text-gray-800">Add Title</label>
+                                <input class="w-full px-4 py-2 leading-tight text-gray-700 bg-gray-200 border-2 border-gray-200 rounded-lg appearance-none dark:text-gray-300 focus:outline-none focus:bg-white focus:border-blue-500" name="title" type="text" x-model="event_title">
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block mb-1 text-sm font-bold tracking-wide text-gray-800">Add Description</label>
+                                <textarea rows="8" class="w-full px-4 py-2 leading-tight text-gray-700 bg-gray-200 border-2 border-gray-200 rounded-lg appearance-none dark:text-gray-300 focus:outline-none focus:bg-white focus:border-blue-500" name="date" type="text" x-model="event_description"></textarea>
+                            </div>
+
+                            {{-- <div class="inline-block w-64 mb-4">
                                 <label class="block mb-1 text-sm font-bold tracking-wide text-gray-800">Select a theme</label>
                                 <div class="relative">
                                     <select @change="event_theme = $event.target.value;" name="theme" x-model="event_theme" class="block w-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-gray-200 border-2 border-gray-200 rounded-lg appearance-none dark:text-gray-300 hover:border-gray-500 focus:outline-none focus:bg-white focus:border-blue-500">
@@ -114,7 +120,7 @@
                                             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="mt-8 text-right">
                                 <button type="button" class="px-4 py-2 mr-2 font-semibold text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm dark:text-gray-300 hover:bg-gray-100" @click="openEventModal = !openEventModal">
@@ -134,7 +140,7 @@
              
 
             <script>
-                const MONTH_NAMES = ['Januari', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
                 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
                 function app() {
@@ -148,24 +154,35 @@
                         events: [{
                                 event_date: new Date(2020, 3, 1),
                                 event_title: "April Fool's Day",
-                                event_theme: 'blue'
+                                event_theme: 'blue',
+                                event_description: 'yada yada'
                             },
 
                             {
                                 event_date: new Date(2021, 3, 10),
                                 event_title: "Birthday",
-                                event_theme: 'red'
+                                event_theme: 'red',
+                                event_description: 'yada yada'
                             },
 
                             {
-                                event_date: new Date(2023, 3, 16),
+                                event_date: new Date(2022, 3, 16),
                                 event_title: "Upcoming Event",
-                                event_theme: 'green'
+                                event_theme: 'green',
+                                event_description: 'yada yada'
+                            },
+
+                            {
+                                event_date: new Date(2022, 3, 16),
+                                event_title: "Upcoming Event 2",
+                                event_theme: 'green',
+                                event_description: 'yada yada'
                             }
                         ],
                         event_title: '',
                         event_date: '',
                         event_theme: 'blue',
+                        event_description: '',
 
                         themes: [{
                                 value: "blue",
@@ -222,7 +239,8 @@
                             this.events.push({
                                 event_date: this.event_date,
                                 event_title: this.event_title,
-                                event_theme: this.event_theme
+                                event_theme: this.event_theme,
+                                event_description: this.event_description
                             });
 
                             console.log(this.events);
@@ -231,6 +249,7 @@
                             this.event_title = '';
                             this.event_date = '';
                             this.event_theme = 'blue';
+                            this.event_description = '';
 
                             //close the modal
                             this.openEventModal = false;

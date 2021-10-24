@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::view('buttons', 'buttons')->name('buttons');
     Route::view('modals', 'modals')->name('modals');
     Route::view('tables', 'tables')->name('tables');
-    Route::view('calendar', 'calendar')->name('calendar');
+    // Route::view('calendar', 'calendar')->name('calendar');
     Route::view('addparts', 'addparts')->name('addparts');
    
     
@@ -55,7 +55,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/userkeluar', [ ConsumptionInventoryController::class, "userkeluar" ])->name('/usekeluar');
     Route::get('return/{id}', [ ConsumptionInventoryController::class, "return" ])->name('return'); 
 
-    Route::post('/addcalendar', [ MaintenanceController::class, "addcalendar" ])->name('/addcalendar');
+    Route::get('/report', [ MaintenanceController::class, "index" ])->name('report');
+    Route::post('/add_report', [ MaintenanceController::class, "add_report" ])->name('add_report');
+    Route::get('/view_report', [ MaintenanceController::class, "view_report"])->name('view_report');
 
     
     
