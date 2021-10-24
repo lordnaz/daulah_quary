@@ -3,6 +3,8 @@
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\UpdateInventoryController;
 use App\Http\Controllers\ConsumptionInventoryController;
+use App\Http\Controllers\MaintenanceController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +54,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/adminConsumption', [ ConsumptionInventoryController::class, "adminConsumption" ])->name('/adminConsumption');
     Route::post('/userkeluar', [ ConsumptionInventoryController::class, "userkeluar" ])->name('/usekeluar');
     Route::get('return/{id}', [ ConsumptionInventoryController::class, "return" ])->name('return'); 
+
+    Route::post('/addcalendar', [ MaintenanceController::class, "addcalendar" ])->name('/addcalendar');
+
     
     
 });

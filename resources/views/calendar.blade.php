@@ -88,21 +88,22 @@
                         <div class="block w-full p-8 overflow-hidden bg-white rounded-lg shadow">
 
                             <h2 class="pb-2 mb-6 text-2xl font-bold text-gray-800 border-b">Add Event Details</h2>
-
+                            <form method="POST" action="/addcalendar">
+                 {{@csrf_field()}}
                             <div class="mb-4">
                                 <label class="block mb-1 text-sm font-bold tracking-wide text-gray-800">Event title</label>
-                                <input class="w-full px-4 py-2 leading-tight text-gray-700 bg-gray-200 border-2 border-gray-200 rounded-lg appearance-none dark:text-gray-300 focus:outline-none focus:bg-white focus:border-blue-500" type="text" x-model="event_title">
+                                <input class="w-full px-4 py-2 leading-tight text-gray-700 bg-gray-200 border-2 border-gray-200 rounded-lg appearance-none dark:text-gray-300 focus:outline-none focus:bg-white focus:border-blue-500" name="title" type="text" x-model="event_title">
                             </div>
 
                             <div class="mb-4">
                                 <label class="block mb-1 text-sm font-bold tracking-wide text-gray-800">Event date</label>
-                                <input class="w-full px-4 py-2 leading-tight text-gray-700 bg-gray-200 border-2 border-gray-200 rounded-lg appearance-none dark:text-gray-300 focus:outline-none focus:bg-white focus:border-blue-500" type="text" x-model="event_date" readonly>
+                                <input class="w-full px-4 py-2 leading-tight text-gray-700 bg-gray-200 border-2 border-gray-200 rounded-lg appearance-none dark:text-gray-300 focus:outline-none focus:bg-white focus:border-blue-500" name="date" type="text" x-model="event_date" readonly>
                             </div>
 
                             <div class="inline-block w-64 mb-4">
                                 <label class="block mb-1 text-sm font-bold tracking-wide text-gray-800">Select a theme</label>
                                 <div class="relative">
-                                    <select @change="event_theme = $event.target.value;" x-model="event_theme" class="block w-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-gray-200 border-2 border-gray-200 rounded-lg appearance-none dark:text-gray-300 hover:border-gray-500 focus:outline-none focus:bg-white focus:border-blue-500">
+                                    <select @change="event_theme = $event.target.value;" name="theme" x-model="event_theme" class="block w-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-gray-200 border-2 border-gray-200 rounded-lg appearance-none dark:text-gray-300 hover:border-gray-500 focus:outline-none focus:bg-white focus:border-blue-500">
                                         <template x-for="(theme, index) in themes">
                                             <option :value="theme.value" x-text="theme.label"></option>
                                         </template>
@@ -119,15 +120,18 @@
                                 <button type="button" class="px-4 py-2 mr-2 font-semibold text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm dark:text-gray-300 hover:bg-gray-100" @click="openEventModal = !openEventModal">
                                     Cancel
                                 </button>
-                                <button type="button" class="px-4 py-2 font-semibold text-white bg-gray-800 border border-gray-700 rounded-lg shadow-sm hover:bg-gray-700" @click="addEvent()">
+                                <button type="submit" class="px-4 py-2 font-semibold text-white bg-gray-800 border border-gray-700 rounded-lg shadow-sm hover:bg-gray-700" @click="addEvent()">
                                     Save Event
                                 </button>
                             </div>
+                                        </form>
                         </div>
                     </div>
                 </div>
                 <!-- /Modal -->
             </div>
+
+             
 
             <script>
                 const MONTH_NAMES = ['Januari', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -186,6 +190,8 @@
                         ],
 
                         openEventModal: false,
+                        
+
 
                         initDate() {
                             let today = new Date();
@@ -206,6 +212,7 @@
                             this.openEventModal = true;
                             this.event_date = new Date(this.year, this.month, date).toDateString();
                         },
+
 
                         addEvent() {
                             if (this.event_title == '') {
