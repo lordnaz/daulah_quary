@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemsTable extends Migration
+class CreateHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
-            $table->id('table_id');
+        Schema::create('history', function (Blueprint $table) {
+            $table->id('history_id');
             $table->string('item_name')->nullable();
+            $table->string('SerialNumber')->nullable();
+            $table->string('Sub')->nullable();
+            $table->string('name')->nullable();
             $table->integer('quantity')->nullable();
+            $table->foreignId('user_id')->index();
             $table->string('type')->nullable();
-            $table->string('subtype')->nullable();
-            $table->string('SerialNum')->nullable();
-            $table->string('image')->nullable();
-            $table->string('created_by')->nullable();
             $table->timestamps();
-
         });
     }
 
@@ -34,6 +33,6 @@ class CreateItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('history');
     }
 }

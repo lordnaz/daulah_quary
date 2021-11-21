@@ -18,6 +18,7 @@ class CreateItemoutTable extends Migration
             $table->integer('quantityout')->nullable();
             $table->string('item')->nullable();
             $table->string('name')->nullable();
+            $table->string('type')->nullable();
             $table->foreignId('table_id')->index();
             $table->foreignId('user_id')->index();
             $table->timestamps();

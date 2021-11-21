@@ -54,10 +54,36 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/adminConsumption', [ ConsumptionInventoryController::class, "adminConsumption" ])->name('/adminConsumption');
     Route::post('/userkeluar', [ ConsumptionInventoryController::class, "userkeluar" ])->name('/usekeluar');
     Route::get('return/{id}', [ ConsumptionInventoryController::class, "return" ])->name('return'); 
+    Route::get('History', [ ConsumptionInventoryController::class, "History" ])->name('History');
 
     Route::get('/report', [ MaintenanceController::class, "index" ])->name('report');
     Route::post('/add_report', [ MaintenanceController::class, "add_report" ])->name('add_report');
     Route::get('/view_report', [ MaintenanceController::class, "view_report"])->name('view_report');
+
+    //Category Data view
+    Route::get('PlantSpare', [ InventoryController::class, "PlantSpare" ])->name('PlantSpare');
+    Route::get('machinery', [ InventoryController::class, "Machinery" ])->name('machinery');
+    Route::get('Tool', [ InventoryController::class, "Tool" ])->name('Tool');
+    Route::get('Consumeable', [ InventoryController::class, "Consumeable" ])->name('Consumeable');
+
+    //Quantity plus and minus
+    Route::get('Plus/{id}', [ InventoryController::class, "Plus" ])->name('Plus'); 
+    Route::get('Minus/{id}', [ InventoryController::class, "Minus" ])->name('Minus'); 
+    Route::get('Plus1/{id}', [ InventoryController::class, "Plus1" ])->name('Plus1'); 
+    Route::get('Minus1/{id}', [ InventoryController::class, "Minus1" ])->name('Minus1'); 
+    Route::get('Plus2/{id}', [ InventoryController::class, "Plus2" ])->name('Plus2'); 
+    Route::get('Minus2/{id}', [ InventoryController::class, "Minus2" ])->name('Minus2'); 
+    Route::get('Plus3/{id}', [ InventoryController::class, "Plus3" ])->name('Plus3'); 
+    Route::get('Minus3/{id}', [ InventoryController::class, "Minus3" ])->name('Minus3'); 
+    Route::get('Plus4/{id}', [ InventoryController::class, "Plus4" ])->name('Plus4'); 
+    Route::get('Minus4/{id}', [ InventoryController::class, "Minus4" ])->name('Minus4'); 
+
+    //ACTION REPORT
+    Route::get('EditReport/{id}', [ MaintenanceController::class, "EditReport" ])->name('EditReport');
+    Route::get('DeleteReport/{id}', [ MaintenanceController::class, "DeleteReport" ])->name('DeleteReport'); 
+    Route::post('/save_report', [ MaintenanceController::class, "save_report" ])->name('save_report'); 
+
+
 
     
     

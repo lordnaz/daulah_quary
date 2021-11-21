@@ -5,27 +5,29 @@
         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
 
             <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                Add Maintenance Reports
+                Edit Maintenance Reports
             </h4>
 
-            <form method="POST" action="/add_report" enctype="multipart/form-data" accept-charset='UTF-8'>
+            <form method="POST" action="/save_report" enctype="multipart/form-data" accept-charset='UTF-8'>
                 {{@csrf_field()}}
 
                 <label class="block text-sm mt-4">
                     <span class="text-gray-700 dark:text-gray-400">Title</span>
-                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Document Title" name="title" required />
+                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Document Title" name="title" value="{{$report->title}}" required />
                 </label>
+
+                <input type="text" hidden name="id" value="{{$report->id}}">
 
                 <label class="block text-sm mt-4">
                     <span class="text-gray-700 dark:text-gray-400">Description</span>
 
-                    <textarea class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="description" id="" cols="30" rows="6" placeholder="Some description here..." required></textarea>
+                    <textarea class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="description" id="" cols="30" rows="6" placeholder="Some description here..." required>{{$report->description}}</textarea>
                 </label>
 
                 <div class="form-group mt-4 mb-4">
-                    <label>Attachment</label>
+                    <label>Select a New File</label>
                     <div class="custom-file mt-2">
-                        <input type="file" class="custom-file-input form-control" id="file-upload" name="file-upload" accept="file/*" required>
+                        <input type="file" class="custom-file-input form-control" id="file-upload" name="file-upload" accept="file/*">
                     </div>
                     <small><i>Maximum file size is 20MB</i></small>
 
@@ -37,11 +39,11 @@
                     <span class="text-gray-700">Maintenance Type</span>
                     <div class="mt-2">
                         <label class="inline-flex items-center">
-                            <input onclick="check()" type="radio" class="form-radio" name="maintenanceType" value="Unplanned Maintenance">
+                            <input onclick="check()" type="radio" class="form-radio" name="maintenanceType" id="Unplanned Maintenance" value="Unplanned Maintenance">
                             <span class="ml-2">Unplanned Maintenance</span>
                         </label>
                         <label class="inline-flex items-center ml-6">
-                            <input onclick="uncheck()" type="radio" class="form-radio" name="maintenanceType" value="Planned Maintenance">
+                            <input onclick="uncheck()" type="radio" class="form-radio" name="maintenanceType" id="Planned Maintenance" value="Planned Maintenance">
                             <span class="ml-2">Planned Maintenance</span>
                         </label>
                     </div>
@@ -63,10 +65,10 @@
                 <div id="hidden_div1" style="display:none;">
                     <div class="mt-2">
                         <label for="birthday">From:</label>
-                        <input  type="date" id="from" name="from">
+                        <input type="date" value="{{$report->created_at->todatestring()}}" id="from" name="from">
 
                         <label class="pl-10" for="birthday">To:</label>
-                        <input type="date" id="to" name="to">
+                        <input type="date" value="{{$report->updated_at->todatestring()}}" id="to" name="to">
 
                     </div>
                 </div>
@@ -98,6 +100,26 @@
     </script> --}}
 
     <script type="text/javascript">
+        function myFunction() {
+            document.getElementById("{{$report->planned}}").checked = true;
+            var x = "{{$report->planned}}";
+            var from = "{{$report->created_at}}";
+            var to = "{{$report->updated_at}}";
+            if (x == "Unplanned Maintenance") {
+
+                document.getElementById('hidden_div').style.display = "block";
+
+                if (from != to){
+
+                    document.getElementById("mycheck").checked = true;
+                    document.getElementById('hidden_div1').style.display = "block";
+
+                }
+
+            }
+
+        }
+
         function check() {
 
             document.getElementById('hidden_div').style.display = "block";
@@ -111,9 +133,7 @@
             document.getElementById("mycheck").checked = false;
             document.getElementById('from').removeAttribute("required");
             document.getElementById('to').removeAttribute("required");
-            document.getElementById('from').value = "";
-            document.getElementById('to').value = "";
-            
+
         }
 
         var view = document.getElementById("mycheck");
@@ -122,14 +142,10 @@
                 document.getElementById('hidden_div1').style.display = "block";
                 document.getElementById('from').setAttribute("required", "");
                 document.getElementById('to').setAttribute("required", "");
-            }
-
-            else{
+            } else {
                 document.getElementById('hidden_div1').style.display = "none";
                 document.getElementById('from').removeAttribute("required");
                 document.getElementById('to').removeAttribute("required");
-                document.getElementById('from').value = "";
-                document.getElementById('to').value = "";
             }
 
         }

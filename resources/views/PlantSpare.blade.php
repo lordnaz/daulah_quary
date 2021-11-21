@@ -55,12 +55,12 @@
                 </span>
                 </label>      
                 <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="block w-1/3 mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="type" id="inline-full-name">
-                <option value="" selected="true" disabled="">All</option>
+                <option value="{{ route('insert-parts') }}" >All</option>
                 
-                    <option value="{{ route('PlantSpare') }}">Plant sparepart</option>
+                    <option value="" selected="true" disabled="">Plant sparepart</option>
                     <option value="{{ route('machinery') }}">Machinery sparepart</option>
                     <option value="{{ route('Tool') }}">Tool and equipment</option>
-                    <option value="{{ route('Consumeable') }}">Consumeable</option>
+                    <option value="{{ route('Consumeable') }}" >Consumeable</option>
                 
                 </select>
 </td>
@@ -82,24 +82,28 @@
         </table>
         <br>
         
-
+        @php $index = 1; @endphp
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="w-full overflow-x-auto">
-                <table class="w-full whitespace-no-wrap">
+            <table class="w-full whitespace-no-wrap">
                     <thead>
                         <tr
                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                            
+                            <th class="px-4 py-3">Serial Number</th>
                             <th class="px-4 py-3">Name</th>
                             <th class="px-4 py-3">Created By</th>
                             <th class="px-4 py-3">Quantity</th>
                             <th class="px-4 py-3">Add/Deduct Quantities</th>
+                            <th class="px-4 py-3">Image</th>
                             <th class="px-4 py-3">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                         @foreach ($items as $item)
                         <tr class="text-gray-700 dark:text-gray-400">
+                        <td class="px-4 py-3 text-sm">
+                            {{$item->SerialNum}}
+                            </td>
                             <td class="px-4 py-3 text-sm">
                             {{$item->item_name}}
                             </td>
@@ -113,13 +117,13 @@
                             {{$item->quantity}}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                            <a href="Minus/{{$item['table_id']}}">
+                            <a href="Minus1/{{$item['table_id']}}">
                             <button class="p-2 pl-5 pr-5 bg-transparent border-2 border-red-500 text-red-500 text-lg rounded-lg hover:bg-red-500 hover:text-gray-100 focus:border-4 focus:border-green-300">
                             <svg class="h-4 w-4"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="5" y1="12" x2="19" y2="12" /></svg>
                             </button>
                             </a>
 
-                            <a href="Plus/{{$item['table_id']}}">
+                            <a href="Plus1/{{$item['table_id']}}">
                             <button class="p-2 pl-5 pr-5 bg-transparent border-2 border-green-500 text-green-500 text-lg rounded-lg hover:bg-green-500 hover:text-gray-100 focus:border-4 focus:border-green-300">
                             <svg class="h-4 w-4"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <line x1="12" y1="5" x2="12" y2="19" />  <line x1="5" y1="12" x2="19" y2="12" /></svg>
                             </button>
@@ -127,8 +131,19 @@
 
                             </td>
                             <td class="px-4 py-3">
+                                    <div id="{{ $index }}" class="flex items-center space-x-4 text-sm">
+                                    
+                                       
+                                        <button class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                            <span>View</span>
+                                        </button>
+                                        
+                                   
+                                    </div>
+                                </td>
+                            <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">
-                                
+
                                 <a href="EditItem/{{$item['table_id']}}">
                                     <button
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
@@ -154,13 +169,32 @@
                                     </button>
                                 </a>
                                 </div>
+                                
                             </td>
                          </tr>
+                          
+                         <!--Modal-->
+         <div id="modal" class="{{ $index }}" style="display:none;">
+         
+         <div class=" fixed w-full h-full top-0 left-0 flex items-center justify-center">
+             
+           <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+           <div class="modal-container bg-white rounded shadow-lg z-50 overflow-y-auto">
+           <span class="close" name="{{ $index }}">&times;</span>
+           <img src="{{asset('storage/image/'. $item->image)}}" onerror="this.onerror=null; this.src='/img/not.jpg'" style="width:1200px;height:700px;"/>
+             
+       
+           
+               
+             </div>
+           </div>
+         </div>
+         @php $index++; @endphp
                          @endforeach
                     </tbody>
                 </table>
             </div>
-           
+           <input type="hidden" id="count" value="{{count($items)}}"/>
             <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-3 dark:text-gray-400 dark:bg-gray-800">
                 <span class="flex items-center">
                     Showing {{count($items)}}-8 of {{count($totals)}};
@@ -173,4 +207,31 @@
                 
         </div>
     </div>
+
+
+    <script>
+
+var x = document.getElementById("count").value;        
+for (let i = 1; i <= x; i++) {
+
+var view = document.getElementById(i);
+view.onclick = function(){
+
+
+var modal = document.getElementsByClassName(i)[0];
+modal.style.display = "block";
+
+var span = document.getElementsByName(i)[0];
+
+span.onclick = function() { 
+  modal.style.display = "none";
+}
+
+}
+}
+
+// Get the <span> element that closes the modal
+
+
+</script>
 </x-app-layout>

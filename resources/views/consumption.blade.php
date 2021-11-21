@@ -85,7 +85,7 @@ $status = auth()->user()->role;
                 <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="user" id="user" required>
                 <option value="" selected="true" disabled="">Choose User</option>
                 @foreach ($users as $user)
-                    <option value="{{$user->name}}">{{$user->name}}</option>
+                    <option value="{{$user->id}}">{{$user->name}}</option>
                 @endforeach
                 </select>
             </label>
@@ -192,7 +192,7 @@ $status = auth()->user()->role;
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                 
             <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                    Admin
+                    User
                 </h4>
             <!-- Admin Input -->
             <form action="/userkeluar" method="POST">

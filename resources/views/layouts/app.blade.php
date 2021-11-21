@@ -36,9 +36,29 @@
 
     <!-- Scripts -->
     {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script> --}}
+
+    <style>
+        .close {
+  position: absolute;
+  top:60px;
+  right:250px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+    
 </head>
 
-<body>
+<body onload="myFunction()">
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
         @include('layouts.menu')
         @include('layouts.mobile-menu')
