@@ -74,15 +74,27 @@
                         Usage
                         </a>
                     </li>
+                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                        <a class="w-full" href="{{ route('History') }}">
+                            Usage History
+                        </a>
+                    </li>
                 
                 @else
-
+                    <!-- <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                        <a class="w-full" href="{{ route('addparts') }}">Add New Item</a>
+                    </li> -->
                     <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                         <a class="w-full" href="{{ route('insert-parts') }}">View Inventories</a>
                     </li>
                     <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                         <a class="w-full" href="{{ route('UpQuantity') }}">
                             Update Inventories
+                        </a>
+                    </li>
+                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                        <a class="w-full" href="{{ route('History') }}">
+                            Usage History
                         </a>
                     </li>
                     <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">

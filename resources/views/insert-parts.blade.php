@@ -35,6 +35,7 @@
   </span>
 </div>
 @endif
+
     <div class="container grid px-6 mx-auto">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
             Items
@@ -45,43 +46,38 @@
         <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
             Items List    
         </h4>
+
+
         <table>
-       
-<tr>
-    <td>
-        <label class="block mt-4 text-sm" for="inline-full-name">
-                <span class="text-gray-700 dark:text-gray-400">
-                    Category
-                </span>
-                </label>      
-                <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="block w-1/3 mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="type" id="inline-full-name">
-                <option value="" selected="true" disabled="">All</option>
-                
-                    <option value="{{ route('PlantSpare') }}">Plant sparepart</option>
-                    <option value="{{ route('machinery') }}">Machinery sparepart</option>
-                    <option value="{{ route('Tool') }}">Tool and equipment</option>
-                    <option value="{{ route('Consumeable') }}">Consumeable</option>
-                
-                </select>
-</td>
-<td class="pt-10">    
-
-            <a href="/addparts">
-                <button class="flex items-center justify-between px-5 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple float-right">
-               
-                <svg class="w-4 h-4 mr-2 -ml-1" fill="currentColor" aria-hidden="true" viewBox="0 0 20 20">
-                        <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                    </svg>
-                    <span>Add Item</span>
-                </button>
-            </a>
-</td>
-</tr>
-
-        
+            <tr>
+                <td>
+                    <label class="block mt-4 text-sm" for="inline-full-name">
+                        <span class="text-gray-700 dark:text-gray-400">
+                            Category
+                        </span>
+                    </label>      
+                    <select onchange="window.location.href=this.options[this.selectedIndex].value;" class="block w-1/3 mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="type" id="inline-full-name">
+                        <option value="" selected="true" disabled="">All</option>
+                        <option value="{{ route('PlantSpare') }}">Plant sparepart</option>
+                        <option value="{{ route('machinery') }}">Machinery sparepart</option>
+                        <option value="{{ route('Tool') }}">Tool and equipment</option>
+                        <option value="{{ route('Consumeable') }}">Consumeable</option>
+                    </select>
+                </td>
+                <td class="pt-10">    
+                    <a href="/addparts">
+                        <button class="flex items-center justify-between px-5 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple float-right">
+                        <svg class="w-4 h-4 mr-2 -ml-1" fill="currentColor" aria-hidden="true" viewBox="0 0 20 20">
+                            <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                        </svg>
+                        <span>Add Item</span>
+                        </button>
+                    </a>
+                </td>
+            </tr>
         </table>
+
         <br>
-        
 
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="w-full overflow-x-auto">
@@ -91,7 +87,8 @@
                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                             
                             <th class="px-4 py-3">Name</th>
-                            <th class="px-4 py-3">Created By</th>
+                            <!-- <th class="px-4 py-3">Created By</th> -->
+                            <th class="px-4 py-3">Category</th>
                             <th class="px-4 py-3">Quantity</th>
                             <th class="px-4 py-3">Add/Deduct Quantities</th>
                             <th class="px-4 py-3">Actions</th>
@@ -106,7 +103,11 @@
                             <td class="px-4 py-3 text-xs">
                                 <span
                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    {{$item->created_by}}
+                                    {{$item->type}}
+
+                                    @if($item->subtype != 'N/A')
+                                        ( {{$item->subtype}} )
+                                    @endif
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-sm">

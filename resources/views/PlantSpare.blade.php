@@ -181,7 +181,7 @@
            <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
            <div class="modal-container bg-white rounded shadow-lg z-50 overflow-y-auto">
            <span class="close" name="{{ $index }}">&times;</span>
-           <img src="{{asset('storage/image/'. $item->image)}}" onerror="this.onerror=null; this.src='/img/not.jpg'" style="width:1200px;height:700px;"/>
+           <img src="{{asset('storage/image/'. $item->image)}}" onerror="this.onerror=null; this.src='/img/not.jpg'" style="width:auto;height:auto;"/>
              
        
            

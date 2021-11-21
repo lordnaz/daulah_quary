@@ -46,7 +46,19 @@ $status = auth()->user()->role;
                              
                 @foreach ($item as $items)                              
               
-                <option value="{{$items->item_name}}">{{$items->item_name}}</option> 
+                <option value="{{$items->item_name}}">{{$items->item_name}} 
+                    (
+                        {{$items->type}}
+                        @if($items->subtype != 'N/A')
+                            - {{$items->subtype}}
+                        @endif
+                    )
+
+                    QTY : (
+                        {{$items->quantity}}
+                    )
+                    
+                </option> 
                
                 @endforeach
                 </select>
@@ -99,7 +111,20 @@ $status = auth()->user()->role;
                              
                 @foreach ($item as $items)                              
               
-                <option value="{{$items->item_name}}">{{$items->item_name}}</option> 
+                <!-- <option value="{{$items->item_name}}">{{$items->item_name}}</option>  -->
+                <option value="{{$items->item_name}}">{{$items->item_name}} 
+                    (
+                        {{$items->type}}
+                        @if($items->subtype != 'N/A')
+                            - {{$items->subtype}}
+                        @endif
+                    )
+
+                    QTY : (
+                        {{$items->quantity}}
+                    )
+                    
+                </option> 
                
                 @endforeach
                 </select>
@@ -211,7 +236,21 @@ $status = auth()->user()->role;
                              
                 @foreach ($item as $items)                              
               
-                <option value="{{$items->item_name}}">{{$items->item_name}}</option> 
+                <!-- <option value="{{$items->item_name}}">{{$items->item_name}}</option>  -->
+
+                <option value="{{$items->item_name}}">{{$items->item_name}} 
+                    (
+                        {{$items->type}}
+                        @if($items->subtype != 'N/A')
+                            - {{$items->subtype}}
+                        @endif
+                    )
+                    
+                    QTY : (
+                        {{$items->quantity}}
+                    )
+                    
+                </option> 
                
                 @endforeach
                 </select>

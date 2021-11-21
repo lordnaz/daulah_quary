@@ -52,22 +52,22 @@ class MaintenanceController extends Controller
         
 
         if($req->maintenanceType == "Unplanned Maintenance"){
-        if($req->filled('from')){
-            $from = $req->from;
-        }else{
-            $from = date('Y-m-d H:i:s');
-        }
+            if($req->filled('from')){
+                $from = $req->from;
+            }else{
+                $from = date('Y-m-d H:i:s');
+            }
 
-        if($req->filled('to')){
-            $to = $req->to;
-        }else{
-            $from = date('Y-m-d H:i:s');
+            if($req->filled('to')){
+                $to = $req->to;
+            }else{
+                $to = date('Y-m-d H:i:s');
+            }
         }
-    }
         else{
 
             $from = date('Y-m-d H:i:s');
-            $from = date('Y-m-d H:i:s');
+            $to = date('Y-m-d H:i:s');
         }
 
 

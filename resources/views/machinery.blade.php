@@ -180,22 +180,21 @@
                             </td>
                             </tr>
                           
-                          <!--Modal-->
-          <div id="modal" class="{{ $index }}" style="display:none;">
-          
-          <div class=" fixed w-full h-full top-0 left-0 flex items-center justify-center">
-              
-            <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
-            <div class="modal-container bg-white rounded shadow-lg z-50 overflow-y-auto">
-            <span class="close" name="{{ $index }}">&times;</span>
-            <img src="{{asset('storage/image/'. $item->image)}}" style="width:1200px;height:700px;"/>
-              
-        
+            <!--Modal-->
+            <div id="modal" class="{{ $index }}" style="display:none;">
             
+                <div class=" fixed w-full h-full top-0 left-0 flex items-center justify-center">
                 
-              </div>
+                    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50">
+                    </div>
+                    <div class="modal-container bg-white rounded shadow-lg z-50 overflow-y-auto">
+                        <span class="close" name="{{ $index }}">&times;</span>
+                        <img src="{{asset('storage/image/'. $item->image)}}" style="width:auto;height:auto;"/>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            
           @php $index++; @endphp
                           @endforeach
                     </tbody>

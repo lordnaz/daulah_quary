@@ -37,7 +37,7 @@
                     <span class="text-gray-700">Maintenance Type</span>
                     <div class="mt-2">
                         <label class="inline-flex items-center">
-                            <input onclick="check()" type="radio" class="form-radio" name="maintenanceType" value="Unplanned Maintenance">
+                            <input required onclick="check()" type="radio" class="form-radio" name="maintenanceType" value="Unplanned Maintenance">
                             <span class="ml-2">Unplanned Maintenance</span>
                         </label>
                         <label class="inline-flex items-center ml-6">
