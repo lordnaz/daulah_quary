@@ -91,7 +91,7 @@
         <!-- Cards -->
         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
 
-            @if ($role == 'admin')
+            <!-- @if ($role == 'admin') -->
                 <!-- Card -->
                 <a href="{{ route('insert-parts') }}">
                 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 cursor-pointer hover:border-purple-700 border-2 border-purple-300">
@@ -168,7 +168,7 @@
                 </div>
             </a>
             
-            @endif
+            <!-- @endif -->
         </div>        
     </div>
 
