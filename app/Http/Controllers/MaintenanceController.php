@@ -51,7 +51,7 @@ class MaintenanceController extends Controller
         $username = auth()->user()->name;
         
 
-        if($req->maintenanceType == "Unplanned Maintenance"){
+       
             if($req->filled('from')){
                 $from = $req->from;
             }else{
@@ -63,12 +63,8 @@ class MaintenanceController extends Controller
             }else{
                 $to = date('Y-m-d H:i:s');
             }
-        }
-        else{
-
-            $from = date('Y-m-d H:i:s');
-            $to = date('Y-m-d H:i:s');
-        }
+        
+       
 
 
         $currentdt = date('Y-m-d H:i:s');

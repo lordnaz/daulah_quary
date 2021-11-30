@@ -105,7 +105,7 @@
             var x = "{{$report->planned}}";
             var from = "{{$report->created_at}}";
             var to = "{{$report->updated_at}}";
-            if (x == "Unplanned Maintenance") {
+            
 
                 document.getElementById('hidden_div').style.display = "block";
 
@@ -116,36 +116,39 @@
 
                 }
 
-            }
+            
 
         }
 
         function check() {
 
             document.getElementById('hidden_div').style.display = "block";
-            document.getElementById("mycheck").checked = false;
+            
 
         }
 
         function uncheck() {
-            document.getElementById('hidden_div').style.display = "none";
-            document.getElementById('hidden_div1').style.display = "none";
-            document.getElementById("mycheck").checked = false;
-            document.getElementById('from').removeAttribute("required");
-            document.getElementById('to').removeAttribute("required");
+            document.getElementById('hidden_div').style.display = "block";
+            
 
         }
 
         var view = document.getElementById("mycheck");
         view.onchange = function() {
+            var from = "{{$report->created_at->todatestring()}}";
+            var to = "{{$report->updated_at->todatestring()}}";
             if (this.checked) {
                 document.getElementById('hidden_div1').style.display = "block";
                 document.getElementById('from').setAttribute("required", "");
                 document.getElementById('to').setAttribute("required", "");
+                document.getElementById('from').value = from;
+                document.getElementById('to').value = to;
             } else {
                 document.getElementById('hidden_div1').style.display = "none";
                 document.getElementById('from').removeAttribute("required");
                 document.getElementById('to').removeAttribute("required");
+                document.getElementById('from').value = "";
+                document.getElementById('to').value = "";
             }
 
         }

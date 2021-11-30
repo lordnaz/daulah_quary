@@ -102,18 +102,22 @@
 
             document.getElementById('hidden_div').style.display = "block";
             document.getElementById("mycheck").checked = false;
+            document.getElementById('hidden_div1').style.display = "none";
+            document.getElementById('from').removeAttribute("required");
+                document.getElementById('to').removeAttribute("required");
+                document.getElementById('from').value = "";
+                document.getElementById('to').value = "";
 
         }
 
         function uncheck() {
-            document.getElementById('hidden_div').style.display = "none";
-            document.getElementById('hidden_div1').style.display = "none";
+            document.getElementById('hidden_div').style.display = "block";
             document.getElementById("mycheck").checked = false;
+            document.getElementById('hidden_div1').style.display = "none";
             document.getElementById('from').removeAttribute("required");
-            document.getElementById('to').removeAttribute("required");
-            document.getElementById('from').value = "";
-            document.getElementById('to').value = "";
-            
+                document.getElementById('to').removeAttribute("required");
+                document.getElementById('from').value = "";
+                document.getElementById('to').value = "";
         }
 
         var view = document.getElementById("mycheck");
