@@ -6,7 +6,7 @@
 
 <div class="py-4 text-gray-500 dark:text-gray-400">
     <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="{{ route('dashboard') }}">
-        {{ config('app.name') }}
+        <img class="inline-flex items-center" src="image/banner.png" width="40%" height="20%">
     </a>
     <ul class="mt-6">
 
